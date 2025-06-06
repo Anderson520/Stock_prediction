@@ -1,20 +1,17 @@
-# 股票價格預測：深度學習應用
+# Stock Price Prediction: Deep Learning Application
+## Project Introduction
+This project aims to predict stock prices using deep learning models. Given the vastness of stock market data, the diversity of influencing factors, and the nonlinear and complex patterns of stock price fluctuations, deep learning offers powerful tools to capture these intricate patterns. Our goal is to utilize historical price information (such as opening price, closing price, high price, low price, and trading volume) to predict future closing prices.
 
-## 專案簡介
+## Data and Preprocessing
+This project acquires stock market data from Yahoo Finance , and conducts predictions for both the overall market (Vanguard Total Stock Market Index Fund ETF, VTI) and individual stocks (Microsoft Corporation, MSFT). The raw data undergoes Min-Max standardization to ensure efficient model training and stable data distribution. We explored two types of input data: sequential input based on the closing prices of the previous K days , and input based on single-day, multi-dimensional information. Data for training spans from January 1, 2010, to May 1, 2023, with testing data from May 1, 2023, to the present.
 
-本專案旨在運用深度學習模型來預測股票價格。鑑於股票市場數據的龐大性、影響因素的多樣性、以及股價變動的非線性與複雜規律，深度學習為捕捉這些複雜模式提供了強大的工具。我們的目標是利用歷史價格資訊（如開盤價、收盤價、最高價、最低價和交易量）來預測未來的收盤價。
 
-## 資料與預處理
+## Model Introduction
+The following models were implemented and evaluated to predict stock prices:
 
-本專案從 Yahoo Finance 獲取股票市場數據，並針對大盤（Vanguard Total Stock Market Index Fund ETF, VTI）和個股（Microsoft Corporation, MSFT）進行了預測。原始數據經過 Min-Max 標準化處理，以確保模型訓練的效率和數據分佈的穩定性。我們探索了兩種輸入數據類型：基於前 K 日收盤價的序列輸入，以及基於單日多維度信息的輸入。
-
-## 模型介紹
-
-實作並評估了以下模型來預測股票價格：
-
-* **Naïve Model**: 作為基準模型，它直接將前一天的收盤價作為當天的預測值，基於隨機漫步理論，提供一個簡單且保守的比較基準。
-* **Transformer Model**: 此模型利用其自注意力機制來捕捉股價時間序列中的長期依賴關係和複雜模式。我們嘗試了不同的參數設定和層數來優化其預測性能。
-* **LSTM (Long Short-Term Memory) Model**: 一種特別適用於時間序列數據的循環神經網路。我們實驗了多種 LSTM 架構，包括直接預測收盤價、預測股價日變化率，以及預測股價與不同週期移動平均線的差距，以探索其在不同數據轉換下的表現。
-* **Random Forest Model**: 這是一種集成學習方法，通過構建多個決策樹並結合它們的預測來提高準確性和魯棒性，同時有效處理數據中的異常值。
-* **DNN (Deep Neural Network)**: 作為一個多層全連接神經網路，DNN 被用於學習輸入特徵與目標股價之間的複雜非線性關係。
-* **Ensembling Model**: 該方法結合了多個不同模型的預測結果。透過綜合各個模型的優勢，集成模型旨在提供更穩定、更準確的最終預測，以彌補單一模型的局限性。
+**Naïve Model**: Serving as a baseline, this model directly uses the previous day's closing price as the prediction for the current day's closing price. Based on the Random Walk Theory, it provides a simple and conservative benchmark for comparison.
+**Transformer Model**: This model utilizes its self-attention mechanism to capture long-range dependencies and complex patterns within stock price time series. We experimented with different parameter settings and numbers of layers to optimize its prediction performance.
+**LSTM (Long Short-Term Memory) Model**: A type of recurrent neural network particularly well-suited for time series data. We experimented with various LSTM architectures, including directly predicting the closing price , predicting daily stock price change rates , and predicting the difference between the stock price and moving averages over different periods, to explore its performance under various data transformations.
+**Random Forest Model**: This is an ensemble learning method that improves prediction accuracy and robustness by constructing multiple decision trees and combining their predictions. It effectively handles outliers by introducing diversity through random sampling and random feature selection.
+**DNN (Deep Neural Network)**: As a multi-layered fully connected neural network, DNN is used to learn complex nonlinear relationships between input features and target stock prices.
+**Ensembling Model**: This approach combines the prediction results from multiple different models. By integrating the strengths of various models, the ensemble model aims to provide more stable and accurate final predictions, compensating for the limitations of individual models.
